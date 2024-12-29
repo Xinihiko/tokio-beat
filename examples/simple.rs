@@ -2,7 +2,7 @@ use chrono::{Duration, Utc};
 use tokio;
 use tokio_beat::job::Job;
 use tokio_beat::scheduler::Scheduler;
-use tracing::info;
+use tracing::{info, Level};
 
 struct Foo {
     bar: String,
@@ -22,7 +22,12 @@ impl Foo {
 
 #[tokio::main]
 async fn main() -> () {
-    tracing_subscriber::fmt::try_init().ok();
+    tracing_subscriber::fmt()
+        // filter spans/events with level TRACE or higher.
+        .with_max_level(Level::TRACE)
+        // build but do not install the subscriber.
+        .try_init()
+        .ok();
 
     let mut scheduler = Scheduler::new();
 
