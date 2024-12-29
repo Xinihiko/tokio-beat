@@ -51,7 +51,7 @@ impl CronJobBuilder {
     fn new(expr: &str) -> CronJobBuilder {
         CronJobBuilder {
             expr: expr.into(),
-            tz: FixedOffset::east(0),
+            tz: FixedOffset::east_opt(0).unwrap(),
         }
     }
 

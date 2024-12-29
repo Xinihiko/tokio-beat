@@ -32,7 +32,7 @@ impl Cycle {
         let factor = duration / self.interval + 1;
         let next_ts = self.start_ts + factor * self.interval;
 
-        Some(Utc.timestamp_millis(next_ts))
+        Some(Utc.timestamp_millis_opt(next_ts).single().unwrap())
     }
 }
 
