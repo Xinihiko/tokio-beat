@@ -33,10 +33,22 @@ mod tests {
 
     #[test]
     fn test_ord() {
-        let t1 = Utc.ymd(2022, 10, 31).and_hms(22, 0, 0);
-        let t2 = Utc.ymd(2022, 10, 31).and_hms(22, 1, 0);
-        let t3 = Utc.ymd(2022, 10, 31).and_hms(22, 1, 0);
-        let t4 = Utc.ymd(2022, 10, 31).and_hms(23, 1, 0);
+        let t1 = Utc
+            .with_ymd_and_hms(2022, 10, 31, 22, 0, 0)
+            .single()
+            .unwrap();
+        let t2 = Utc
+            .with_ymd_and_hms(2022, 10, 31, 22, 1, 0)
+            .single()
+            .unwrap();
+        let t3 = Utc
+            .with_ymd_and_hms(2022, 10, 31, 22, 1, 0)
+            .single()
+            .unwrap();
+        let t4 = Utc
+            .with_ymd_and_hms(2022, 10, 31, 23, 1, 0)
+            .single()
+            .unwrap();
 
         let e1 = TimeEvent {
             job_id: Uuid::new_v4(),
